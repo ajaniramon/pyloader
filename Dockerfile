@@ -33,7 +33,11 @@ USER pyloader
 # Install application into container
 COPY . .
 
+# TODO: Externalize this to actual environment variables from the host
 ENV ADMIN_USER=admin
 ENV ADMIN_PASSWORD=admin
+ENV REDIS_HOST=localhost
+ENV REDIS_PORT=6379
+ENV REDIS_PASSWORD=admin
 
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -8,6 +8,7 @@ fastapi = "*"
 uvicorn = "*"
 boto3 = "*"
 pytube = {editable = true, ref = "master", git = "https://github.com/DEADF00D/pytube.git"}
+redis = "*"
 
 [dev-packages]
 
