@@ -30,7 +30,10 @@ def verify_auth(authorization: Optional[str] = Header(None)):
         unauthorized()
     else:
         try:
-            credentials = base64.b64decode(authorization).decode("utf-8").replace("\n", "").split(":")
+            credentials = base64.b64decode(authorization.replace("Basic ", ""))\
+                .decode("utf-8")\
+                .replace("\n", "")\
+                .split(":")
 
             user = credentials[0]
             password = credentials[1]
@@ -52,7 +55,7 @@ async def donwload(url: str, authorization: Optional[str] = Header(None)):
 
     video_id = uuid.uuid4()
 
-    thread = threading.Thread(target=download_in_max_res_available, args=(video, f"{video_id}.mpg", True))
+    thread = threading.Thread(target=download_in_max_res_available, args=(video, f"{video_id}.mpg", False))
     thread.start()
 
     return {"id": video_id}
