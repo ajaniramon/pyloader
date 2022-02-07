@@ -83,7 +83,7 @@ async def retrieve_video(video_id: str, authorization: Optional[str] = Header(No
     video_info = get_video_info_from_cache(video_id)
 
     if video_info is None:
-        log_debug(f"video_")
+        log_debug(f"video-{video_id} not found in cache")
         return {"error_message", "video not found"}
 
     filepath = f"{video_id}.mp4"
