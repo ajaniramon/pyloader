@@ -1,5 +1,5 @@
 #
-FROM python:3.8 as base
+FROM python:3.9.10 as base
 EXPOSE 8000
 # Setup env
 ENV LANG C.UTF-8
@@ -36,7 +36,7 @@ COPY . .
 # TODO: Externalize this to actual environment variables from the host
 ENV ADMIN_USER=admin
 ENV ADMIN_PASSWORD=admin
-ENV REDIS_HOST=localhost
+ENV REDIS_HOST=redis
 ENV REDIS_PORT=6379
 ENV REDIS_PASSWORD=admin
 

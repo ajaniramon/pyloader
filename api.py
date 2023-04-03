@@ -7,6 +7,7 @@ import time
 from typing import Optional
 
 from fastapi import FastAPI, Header, status, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 from downloader import download_in_max_res_available, get_video
@@ -20,9 +21,18 @@ from log import log_debug
 
 app = FastAPI()
 
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 ADMIN_USER = os.getenv("ADMIN_USER")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
-
 
 configure_logging()
 
@@ -57,7 +67,7 @@ def verify_auth(authorization: Optional[str] = Header(None)):
 
 
 @app.get("/download")
-async def donwload(url: str, authorization: Optional[str] = Header(None)):
+async def request_downlaod(url: str, authorization: Optional[str] = Header(None)):
     verify_auth(authorization)
 
     try:
@@ -77,14 +87,14 @@ async def donwload(url: str, authorization: Optional[str] = Header(None)):
 
 
 @app.get("/download/{video_id}")
-async def retrieve_video(video_id: str, authorization: Optional[str] = Header(None)):
-    verify_auth(authorization)
+async def download_video(video_id: str, c: str):
+    verify_auth(c)
 
     video_info = get_video_info_from_cache(video_id)
 
     if video_info is None:
         log_debug(f"video-{video_id} not found in cache")
-        return {"error_message", "video not found"}
+        return {"error_message", "video not found in cache"}
 
     filepath = f"{video_id}.mp4"
     if os.path.exists(filepath):
@@ -92,4 +102,4 @@ async def retrieve_video(video_id: str, authorization: Optional[str] = Header(No
         log_debug(f"requested download for video {video_info.id} as {filename}")
         return FileResponse(path=filepath, filename=filename)
     else:
-        return {"error_message": "video does not exist anymore"}
+        return {"error_message": "video not found in storage"}

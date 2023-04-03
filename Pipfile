@@ -7,10 +7,10 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 boto3 = "*"
-pytube = {editable = true, ref = "master", git = "https://github.com/DEADF00D/pytube.git"}
+pytube = "*"
 redis = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.9.10"

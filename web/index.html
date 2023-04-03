@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>Pyloader</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
+    <style>
+      html,
+      body,
+      pre,
+      code,
+      kbd,
+      samp {
+        font-family: "Press Start 2P";
+      }
+    </style>
+  </head>
+  <body>
+    <section class="topic"><h2>PYLOADER</h2></section>
+
+    <br/>
+
+    <section class="showcase">
+      <section class="nes-container with-title">
+        <h3 class="title">Request video</h3>
+
+          <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <label for="dark_field" style="color:#fff;">Endpoint</label>
+            <input type="text" id="endpoint" class="nes-input is-dark" placeholder="http://localhost:8000" value="http://localhost:8000"/>
+          </div>
+
+          <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <label for="dark_field" style="color:#fff;">Video URL</label>
+            <input type="text" id="url" class="nes-input is-dark" required/>
+          </div>
+
+          <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <label for="dark_field" style="color:#fff;">User</label>
+            <input type="text" id="username" class="nes-input is-dark" placeholder="admin" value="admin"/>
+          </div>
+
+          <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <label for="dark_field" style="color:#fff;">Password</label>
+            <input type="password" id="password" class="nes-input is-dark" placeholder="admin" value="admin"/>
+          </div>
+          <div style="background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <button type="button" class="nes-btn is-success" onclick="requestVideo();">Request video</button>
+          </div>
+      </section>
+
+      <br/>
+
+      <section class="nes-container with-title">
+        <label for="textarea_field">Result</label>
+        <textarea id="textarea_field" class="nes-textarea" disabled></textarea>
+          <div id="download-section"  style="display:none;background-color:#212529; padding: 1rem;" class="nes-field is-inline">
+            <button type="button" class="nes-btn is-success" id="download-button" disabled onclick="downloadVideo();">Download video</button>
+          </div>
+      </section>
+    </section>
+
+    <script src="https://unpkg.com/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

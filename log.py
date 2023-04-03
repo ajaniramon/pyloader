@@ -2,7 +2,7 @@ import logging
 
 
 def configure_logging():
-    logging.basicConfig(filename="pyloader.log", filemode="w", format="'%(asctime)s - %(message)s'", level="DEBUG")
+    logging.basicConfig(filename="/tmp/pyloader.log", filemode="w", format="'%(asctime)s - %(message)s'", level="DEBUG")
 
 
 def log_debug(msg):
