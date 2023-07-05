@@ -7,7 +7,7 @@ name = "pypi"
 fastapi = "*"
 uvicorn = "*"
 boto3 = "*"
-pytube = "*"
+pytube = {editable = true, ref = "master", git = "https://github.com/oncename/pytube.git"}
 redis = "*"
 
 [dev-packages]
